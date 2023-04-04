@@ -1,8 +1,10 @@
 from typing import List
 import openai
-
-
+from dotenv import load_dotenv
+import os
 from tenacity import retry, wait_random_exponential, stop_after_attempt
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 
 @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(3))
