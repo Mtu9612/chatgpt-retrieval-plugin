@@ -1,9 +1,11 @@
 from datastore.datastore import DataStore
 import os
-
+from dotenv import load_dotenv
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 async def get_datastore() -> DataStore:
-    datastore = os.environ.get("DATASTORE")
+    datastore = os.getenv("DATASTORE")
     assert datastore is not None
 
     match datastore:

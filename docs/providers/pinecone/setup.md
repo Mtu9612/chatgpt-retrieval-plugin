@@ -23,11 +23,14 @@ If you want to create your own index with custom configurations, you can do so u
 # Creating index with Pinecone SDK - use only if you wish to create the index manually.
 
 import os, pinecone
+from dotenv import load_dotenv
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
-pinecone.init(api_key=os.environ['PINECONE_API_KEY'],
-              environment=os.environ['PINECONE_ENVIRONMENT'])
+pinecone.init(api_key=os.getenv['PINECONE_API_KEY'],
+              environment=os.getenv['PINECONE_ENVIRONMENT'])
 
-pinecone.create_index(name=os.environ['PINECONE_INDEX'],
+pinecone.create_index(name=os.getenv['PINECONE_INDEX'],
                       dimension=1536,
                       metric='cosine',
                       metadata_config={
