@@ -1,5 +1,5 @@
 import os
-from typing import Optional
+from typing import Optional, Union
 import uvicorn
 from fastapi import FastAPI, File, Form, HTTPException, Depends, Body, UploadFile
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -39,7 +39,7 @@ sub_app = FastAPI(
     title="Retrieval Plugin API",
     description="A retrieval API for querying and filtering documents based on natural language queries and metadata",
     version="1.0.0",
-    servers=[{"url": "https://your-app-url.com"}],
+    servers=[{"url": " http://0.0.0.0:8000/"}],
     dependencies=[Depends(validate_token)],
 )
 app.mount("/sub", sub_app)
